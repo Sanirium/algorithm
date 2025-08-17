@@ -183,17 +183,9 @@ func (q *PriorityQueue[T]) isEmpty() bool {
 
 func (q *PriorityQueue[T]) removeLast() Pair[T] {
 	element := q.pairs[len(q.pairs)-1]
+	delete(q.indexMap, element.value)
 	q.pairs = q.pairs[:len(q.pairs)-1]
 	return element
-}
-
-func (q *PriorityQueue[T]) findIndex(element T) int {
-	for index, pair := range q.pairs {
-		if pair.value == element {
-			return index
-		}
-	}
-	return -1
 }
 
 func (q *PriorityQueue[T]) highestPriorityChild(currentIndex int) (best Pair[T], bestIdx int) {
