@@ -1,0 +1,6 @@
+# JetBrains IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+modules.xml
