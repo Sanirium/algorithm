@@ -109,11 +109,13 @@ func (q *PriorityQueue[T]) Update(element T, newPriority float32) error {
 
 	oldPriority := q.pairs[index].priority
 	q.pairs[index].priority = newPriority
+
 	if newPriority < oldPriority {
 		q.bubbleUpIndex(index)
 	} else if newPriority > oldPriority {
 		q.pushDownIndex(index)
 	}
+
 	return nil
 }
 
