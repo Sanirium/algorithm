@@ -1,4 +1,4 @@
-package priorityQueue
+package priorityQueueByArray
 
 import (
 	"errors"

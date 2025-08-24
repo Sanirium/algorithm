@@ -1,12 +1,12 @@
 package main
 
 import (
-	priorityQueue "algorithms/internal/priorityQueue"
+	priorityQueue "algorithms/internal/priorityQueue/priorityQueueByLinkedList"
 	"fmt"
 )
 
 func main() {
-	queue := priorityQueue.NewPriorityQueue[string](3, 16)
+	queue := priorityQueue.NewPriorityQueue[string](3)
 
 	queue.Insert("Незашифрованный пароль в базе данных", 10)
 	queue.Insert("Пользовательский интерфейс не работает в браузере X", 9)

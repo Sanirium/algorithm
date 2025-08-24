@@ -21,6 +21,7 @@ type BloomFilter struct {
 	maxSize          uint32
 	numHashFunctions uint32
 	seed             uint32
+	count            uint32
 }
 
 func NewBloomFilter(n uint32, fpRate float64, seed uint32) *BloomFilter {
@@ -53,6 +54,7 @@ func (b *BloomFilter) Insert(value string) {
 	for _, p := range b.key2Positions(value) {
 		writeBit(b.bitsArray, p)
 	}
+	b.count++
 }
 
 func (b *BloomFilter) Contains(value string) bool {
@@ -62,6 +64,16 @@ func (b *BloomFilter) Contains(value string) bool {
 		}
 	}
 	return true
+}
+
+func (b *BloomFilter) FalsePositiveProbability() float64 {
+	if b.numBits == 0 || b.numHashFunctions == 0 || b.count == 0 {
+		return 0
+	}
+	k := float64(b.numHashFunctions)
+	m := float64(b.numBits)
+	n := float64(b.count)
+	return math.Pow(1-math.Exp(-k*n/m), k)
 }
 
 func (b *BloomFilter) key2Positions(key string) []uint32 {

@@ -3,9 +3,9 @@ package treap
 import (
 	"errors"
 	"fmt"
+	"golang.org/x/exp/constraints"
 	"strings"
 )
-import "golang.org/x/exp/constraints"
 
 var (
 	ErrNilNode       = errors.New("treap: nil node")
